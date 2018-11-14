@@ -6,7 +6,7 @@
 %define debug_package %{nil}
 # there are some python 2 and python 3 scripts so there is no way out to bytecompile them ^_^
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-%global build_vers 182.4107.16
+%global build_vers 182.5107.16
 %global idea_name idea-IC
 
 Name:          intellij-idea-community
