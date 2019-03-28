@@ -16,7 +16,7 @@ Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
 
-Source0:       https://download.jetbrains.com/idea/ideaIC-%{version}-no-jdk.tar.gz
+Source0:       https://download.jetbrains.com/idea/ideaIC-%{version}-no-jbr.tar.gz
 
 Source101:     https://raw.githubusercontent.com/lkiesow/intellij-idea-community-rpm/master/intellij-idea.xml
 Source102:     https://raw.githubusercontent.com/lkiesow/intellij-idea-community-rpm/master/intellij-idea-community.desktop
