@@ -6,11 +6,11 @@
 %define debug_package %{nil}
 # there are some python 2 and python 3 scripts so there is no way out to bytecompile them ^_^
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-%global build_vers 192.5728.98
+%global build_vers 192.6262.58
 %global idea_name idea-IC
 
 Name:          intellij-idea-community
-Version:       2019.2
+Version:       2019.2.1
 Release:       1%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
@@ -98,8 +98,11 @@ fi
 %license license/
 
 %changelog
+* Wed Aug 21 2019 Lars Kiesow <lkiesow@uos.de> - 2019.2.1-1
+- Update to 2019.2.1
+
 * Thu Jul 25 2019 Lars Kiesow <lkiesow@uos.de> - 2019.2-1
-- Update tp 2019.2
+- Update to 2019.2
 
 * Thu May 30 2019 Lars Kiesow <lkiesow@uos.de> - 2019.1.3-1
 - Update to 2019.1.3
