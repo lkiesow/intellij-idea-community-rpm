@@ -11,7 +11,7 @@
 
 Name:          intellij-idea-community
 Version:       2021.2
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -58,7 +58,6 @@ mkdir -p %{buildroot}%{_bindir}
 sed -i 's_#!/usr/bin/env python_#!/usr/bin/env python3_' bin/*.py
 cp -arf ./{lib,bin,plugins} %{buildroot}%{_javadir}/%{name}/
 
-rm -f %{buildroot}%{_javadir}/%{name}/bin/fsnotifier{,-arm}
 cp -af ./bin/idea.png %{buildroot}%{_datadir}/pixmaps/idea.png
 cp -af %{SOURCE101} %{buildroot}%{_datadir}/mime/packages/%{name}.xml
 cp -af %{SOURCE102} %{buildroot}%{_datadir}/%{name}.desktop
@@ -98,6 +97,9 @@ fi
 %license license/
 
 %changelog
+* Thu Jul 29 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2-2
+- Include native file system watcher for Linux
+
 * Wed Jul 28 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2
 - Update to 2021.2 (212.4746.92)
 
