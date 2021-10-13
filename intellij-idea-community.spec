@@ -6,11 +6,11 @@
 %define debug_package %{nil}
 # there are some python 2 and python 3 scripts so there is no way out to bytecompile them ^_^
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-%global build_vers 212.4746.92
+%global build_vers 212.5284.40
 %global idea_name idea-IC
 
 Name:          intellij-idea-community
-Version:       2021.2
+Version:       2021.2.2
 Release:       2%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
@@ -97,6 +97,9 @@ fi
 %license license/
 
 %changelog
+* Wed Oct 13 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.2
+- Update to 2021.2.2 (212.5284.40)
+
 * Thu Jul 29 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2-2
 - Include native file system watcher for Linux
 
