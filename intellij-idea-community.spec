@@ -11,7 +11,7 @@
 
 Name:          intellij-idea-community
 Version:       2021.2.2
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -25,6 +25,7 @@ Source103:     https://raw.githubusercontent.com/lkiesow/intellij-idea-community
 BuildRequires: desktop-file-utils
 BuildRequires: /usr/bin/appstream-util
 BuildRequires: python3-devel
+BuildRequires: javapackages-filesystem
 Requires:      java
 
 %description
@@ -97,7 +98,10 @@ fi
 %license license/
 
 %changelog
-* Wed Oct 13 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.2
+* Sun Oct 17 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.2-3
+- Fix Fedora 35/Rawhide builds
+
+* Wed Oct 13 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.2-2
 - Update to 2021.2.2 (212.5284.40)
 
 * Thu Jul 29 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2-2
