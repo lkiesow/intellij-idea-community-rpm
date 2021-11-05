@@ -6,12 +6,12 @@
 %define debug_package %{nil}
 # there are some python 2 and python 3 scripts so there is no way out to bytecompile them ^_^
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-%global build_vers 212.5284.40
+%global build_vers 212.5457.46
 %global idea_name idea-IC
 
 Name:          intellij-idea-community
-Version:       2021.2.2
-Release:       3%{?dist}
+Version:       2021.2.3
+Release:       1%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -98,6 +98,9 @@ fi
 %license license/
 
 %changelog
+* Fri Nov 05 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.3-1
+- Update to 2021.2.3 (212.5457.46)
+
 * Sun Oct 17 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.2-3
 - Fix Fedora 35/Rawhide builds
 
