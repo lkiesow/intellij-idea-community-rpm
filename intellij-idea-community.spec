@@ -11,7 +11,7 @@
 
 Name:          intellij-idea-community
 Version:       2021.2.3
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -59,14 +59,13 @@ mkdir -p %{buildroot}%{_bindir}
 sed -i 's_#!/usr/bin/env python_#!/usr/bin/env python3_' bin/*.py
 
 # Remove files for different architectures
-cd lib/pty4j-native/linux/
-rm -rf aarch64 arm mips64el ppc64le x86
-cd -
-cd plugins/maven/lib/maven3/lib/jansi-native/
-rm -rf freebsd32 freebsd64 linux32 osx windows32 windows64
-cd -
+rm -rf lib/pty4j-native/linux/{aarch64,arm,mips64el,ppc64le,x86}
+rm -rf plugins/maven/lib/maven3/lib/jansi-native/{freebsd32,freebsd64,linux32,osx,windows32,windows64}
+rm -rf plugins/Kotlin/bin/{macos,windows}
+rm -rf plugins/webp/lib/libwebp/linux/libwebp_jni.so
+rm -rf plugins/webp/lib/libwebp/{mac,win}
+rm -rf plugins/cwm-plugin/quiche-native/{darwin,win}*
 cp -arf ./{lib,bin,plugins} %{buildroot}%{_javadir}/%{name}/
-rm plugins/webp/lib/libwebp/linux/libwebp_jni.so
 
 cp -af ./bin/idea.png %{buildroot}%{_datadir}/pixmaps/idea.png
 cp -af %{SOURCE101} %{buildroot}%{_datadir}/mime/packages/%{name}.xml
@@ -107,6 +106,9 @@ fi
 %license license/
 
 %changelog
+* Thu Dec 16 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.3-3
+- Fix dependencies (Remove Mac/Win binaries)
+
 * Fri Nov  5 2021 Lars Kiesow <lkiesow@uos.de> - 2021.2.3-2
 - Fix architecture dependencies in Fedora 35
 
