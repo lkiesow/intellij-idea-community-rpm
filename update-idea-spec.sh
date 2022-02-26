@@ -30,4 +30,5 @@ if [ "$LATEST" != "$PKG" ]; then
 	sed -i "s/^%changelog/%changelog\n\* ${DATE} ${USER} - ${version}\n- Update to ${LATEST}\n/" intellij-idea-community.spec
 
 	git commit intellij-idea-community.spec -m "Update to ${version}"
+	git push
 fi

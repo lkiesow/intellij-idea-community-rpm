@@ -1,0 +1,20 @@
+name: Update IntelliJ IDEA
+
+on:
+  schedule:
+  - cron: "0 4 * * *"
+
+jobs:
+  update-languagetool:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: prepare git
+        run: |
+          git config --global user.email 'rpm-bot@lkiesow.io'
+          git config --global user.name 'RPM Bot'
+
+      - name: upload SPEC file
+        run: |
+          ./update-idea-spec.sh
