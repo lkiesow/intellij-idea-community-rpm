@@ -11,7 +11,7 @@
 
 Name:          intellij-idea-community
 Version:       2022.2
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -60,6 +60,7 @@ sed -i 's_#!/usr/bin/env python_#!/usr/bin/env python3_' bin/*.py
 
 # Remove files for different architectures
 rm -rf lib/pty4j-native/linux/{aarch64,arm,mips64el,ppc64le,x86}
+rm -rf plugins/cwm-plugin/quiche-native/linux-aarch64
 rm -rf plugins/maven/lib/maven3/lib/jansi-native/{freebsd32,freebsd64,linux32,osx,windows32,windows64}
 rm -rf plugins/Kotlin/bin/{macos,windows}
 rm -rf plugins/webp/lib/libwebp/linux/libwebp_jni.so
@@ -106,6 +107,9 @@ fi
 %license license/
 
 %changelog
+* Sat Aug 13 2022 Lars Kiesow <lkiesow@uos.de> - 2022.2-2
+- Remove files for unsupported architectures
+
 * Wed Jul 27 2022 Lars Kiesow <lkiesow@uos.de> - 2022.2
 - Update to 2022.2 (222.3345.118)
 
