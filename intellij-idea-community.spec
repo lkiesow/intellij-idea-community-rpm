@@ -3,6 +3,9 @@
 %global __strip /bin/true
 # dont repack jars
 %global __jar_repack %{nil}
+# disable rpath checks
+# needed as 'jbr/lib/libjceftesthelpers.so' fails with 'contains an invalid rpath'
+%define __brp_check_rpaths %{nil}
 %define debug_package %{nil}
 # there are some python 2 and python 3 scripts so there is no way out to bytecompile them ^_^
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
@@ -16,7 +19,7 @@ Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
 
-Source0:       https://download.jetbrains.com/idea/ideaIC-%{version}-no-jbr.tar.gz
+Source0:       https://download.jetbrains.com/idea/ideaIC-%{version}.tar.gz
 
 Source101:     https://raw.githubusercontent.com/lkiesow/intellij-idea-community-rpm/master/intellij-idea.xml
 Source102:     https://raw.githubusercontent.com/lkiesow/intellij-idea-community-rpm/master/intellij-idea-community.desktop
@@ -26,7 +29,6 @@ BuildRequires: desktop-file-utils
 BuildRequires: /usr/bin/appstream-util
 BuildRequires: python3-devel
 BuildRequires: javapackages-filesystem
-Requires:      java
 
 %description
 IntelliJ IDEA analyzes your code, looking for connections between symbols
@@ -66,7 +68,7 @@ rm -rf plugins/Kotlin/bin/{macos,windows}
 rm -rf plugins/webp/lib/libwebp/linux/libwebp_jni.so
 rm -rf plugins/webp/lib/libwebp/{mac,win}
 rm -rf plugins/cwm-plugin/quiche-native/{darwin,win}*
-cp -arf ./{lib,bin,plugins} %{buildroot}%{_javadir}/%{name}/
+cp -arf ./{lib,bin,plugins,jbr} %{buildroot}%{_javadir}/%{name}/
 
 cp -af ./bin/idea.png %{buildroot}%{_datadir}/pixmaps/idea.png
 cp -af %{SOURCE101} %{buildroot}%{_datadir}/mime/packages/%{name}.xml
