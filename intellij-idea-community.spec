@@ -6,7 +6,7 @@
 %define debug_package %{nil}
 # there are some python 2 and python 3 scripts so there is no way out to bytecompile them ^_^
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
-%global build_vers 223.8836.35
+%global build_vers 223.8836.41
 %global idea_name idea-IC
 
 Name:          intellij-idea-community
@@ -107,6 +107,9 @@ fi
 %license license/
 
 %changelog
+* Sat Mar 11 2023 Lars Kiesow <lkiesow@uos.de> - 2022.3.3
+- Update to 2022.3.3 (223.8836.41)
+
 * Thu Mar 09 2023 Lars Kiesow <lkiesow@uos.de> - 2022.3.3
 - Update to 2022.3.3 (223.8836.35)
 
