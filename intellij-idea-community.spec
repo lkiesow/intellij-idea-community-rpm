@@ -14,7 +14,7 @@
 
 Name:          intellij-idea-community
 Version:       2023.1.3
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -56,9 +56,6 @@ mkdir -p %{buildroot}%{_datadir}/mime/packages
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/appdata
 mkdir -p %{buildroot}%{_bindir}
-
-# Use Python 3
-sed -i 's_#!/usr/bin/env python_#!/usr/bin/env python3_' bin/*.py
 
 # Remove files for different architectures
 rm -rf lib/pty4j-native/linux/{aarch64,arm,mips64el,ppc64le,x86}
@@ -109,6 +106,10 @@ fi
 %license license/
 
 %changelog
+* Tue Jul 11 2023 Lars Kiesow <lkiesow@uos.de> - 2023.1.3-3
+- New includes JDK
+- Fixes Python 3 issue
+
 * Wed Jun 21 2023 Lars Kiesow <lkiesow@uos.de> - 2023.1.3
 - Update to 2023.1.3 (231.9161.38)
 
