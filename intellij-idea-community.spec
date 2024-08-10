@@ -14,7 +14,7 @@
 
 Name:          intellij-idea-community
 Version:       2024.2
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -78,6 +78,11 @@ desktop-file-install \
   --dir=%{buildroot}%{_datadir}/applications \
   %{buildroot}%{_datadir}/intellij-idea-community.desktop
 
+# Temporary fix for missing home path:
+# https://github.com/lkiesow/intellij-idea-community-rpm/issues/9
+sed -i 's_com.intellij.idea.Main_com.intellij.idea.Main -Didea.home.path=%{_javadir}/%{name}_' \
+  %{buildroot}%{_javadir}/%{name}/bin/idea.sh
+
 %check
 appstream-util validate-relax \
   --nonet %{buildroot}%{_datadir}/appdata/intellij-idea-community.appdata.xml
@@ -106,6 +111,9 @@ fi
 %license license/
 
 %changelog
+* Sat Aug 10 2024 Lars Kiesow <lkiesow@uos.de> - 2024.2-4
+- Fix startup problem with 2024.2
+
 * Thu Aug 08 2024 Lars Kiesow <lkiesow@uos.de> - 2024.2
 - Update to 2024.2 (242.20224.300)
 
