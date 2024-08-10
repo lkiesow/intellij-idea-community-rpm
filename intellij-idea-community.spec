@@ -14,7 +14,7 @@
 
 Name:          intellij-idea-community
 Version:       2024.2
-Release:       4%{?dist}
+Release:       5%{?dist}
 Summary:       Intelligent Java IDE
 License:       ASL 2.0
 URL:           https://www.jetbrains.com/idea/
@@ -65,23 +65,18 @@ rm -rf plugins/Kotlin/bin/{macos,windows}
 rm -rf plugins/webp/lib/libwebp/linux/libwebp_jni.so
 rm -rf plugins/webp/lib/libwebp/{mac,win}
 rm -rf plugins/cwm-plugin/quiche-native/{darwin,win}*
-cp -arf ./{lib,bin,plugins,jbr} %{buildroot}%{_javadir}/%{name}/
+cp -arf ./{lib,bin,plugins,jbr,build.txt,product-info.json} %{buildroot}%{_javadir}/%{name}/
 
 cp -af ./bin/idea.png %{buildroot}%{_datadir}/pixmaps/idea.png
 cp -af %{SOURCE101} %{buildroot}%{_datadir}/mime/packages/%{name}.xml
 cp -af %{SOURCE102} %{buildroot}%{_datadir}/%{name}.desktop
 cp -a %{SOURCE103} %{buildroot}%{_datadir}/appdata
-ln -s %{_javadir}/%{name}/bin/idea.sh %{buildroot}%{_bindir}/idea
+ln -s %{_javadir}/%{name}/bin/idea %{buildroot}%{_bindir}/idea
 desktop-file-install \
   --add-category="Development" \
   --delete-original \
   --dir=%{buildroot}%{_datadir}/applications \
   %{buildroot}%{_datadir}/intellij-idea-community.desktop
-
-# Temporary fix for missing home path:
-# https://github.com/lkiesow/intellij-idea-community-rpm/issues/9
-sed -i 's_com.intellij.idea.Main_com.intellij.idea.Main -Didea.home.path=%{_javadir}/%{name}_' \
-  %{buildroot}%{_javadir}/%{name}/bin/idea.sh
 
 %check
 appstream-util validate-relax \
@@ -111,6 +106,9 @@ fi
 %license license/
 
 %changelog
+* Sat Aug 10 2024 Lars Kiesow <lkiesow@uos.de> - 2024.2-5
+- Switch to new start binary
+
 * Sat Aug 10 2024 Lars Kiesow <lkiesow@uos.de> - 2024.2-4
 - Fix startup problem with 2024.2
 
